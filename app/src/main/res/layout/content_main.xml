@@ -28,6 +28,7 @@
         android:layout_below="@+id/loc_txt"
         android:layout_margin="5dp"
         android:hint="London"
+        android:singleLine="true"
         android:paddingLeft="5dp"
         android:paddingRight="5dp" />
 

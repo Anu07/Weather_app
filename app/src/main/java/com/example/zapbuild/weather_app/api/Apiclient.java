@@ -19,7 +19,7 @@ import retrofit.http.Query;
 public class Apiclient {
 
 
-    public static String Base_url = "http://api.openweathermap.org/data/2.5";
+    public static String Base_url = "http://api.openweathermap.org";
     public static Api_interface api_interface;
 
 
@@ -37,7 +37,6 @@ public class Apiclient {
             Retrofit retro = new Retrofit.Builder()
                     .baseUrl(Base_url)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(okClient)
                     .build();
             api_interface = retro.create(Api_interface.class);
         }
@@ -47,7 +46,7 @@ public class Apiclient {
 
     public interface Api_interface {
 
-        @GET("/weather")
+        @GET("/data/2.5/weather")
         Call<Sample> getWeather(@Query("q") String location, @Query("appid") String app_id);
 
 

@@ -65,15 +65,18 @@ public class MainActivity extends BaseActivity {
 
         onShowProgress("Fetching...");
         Apiclient.Api_interface service = Apiclient.get_request();
-        Call<Sample> call = service.getWeather(location_txt,"2de143494c0b295cca9337e1e96b00e0");
+        Log.v("L", "F" + location_txt);
+        Call<Sample> call = service.getWeather(location_txt, "faa80a375f55c8aebe4b685d432f669e");
         call.enqueue(new Callback<Sample>() {
             @Override
             public void onResponse(Response<Sample> response, Retrofit retrofit) {
                 onHideProgress();
                 System.out.println("Response status:" + response.code());
-                if(response.isSuccess()){
-                    Sample sample=response.body();
-                    System.out.println("Wind status:" + sample.getWind());
+                if (response.isSuccess()) {
+                    Sample sample = (Sample) response.body();
+                    System.out.println("Wind status:" + sample.getMain().getTemp().toString());
+                    Snackbar.make(mLocation_edit,"Temperature detected: "+sample.getMain().getTemp(),Snackbar.LENGTH_LONG).show();
+
 
                 }
             }
